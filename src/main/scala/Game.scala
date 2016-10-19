@@ -1,16 +1,11 @@
 import scala.collection.mutable
 
 object Game extends App {
-  val r = scala.util.Random
-
   println("Welcome")
   val deck = Deck(mutable.Stack(2,3,4,5,6,7,8,9,10,10,10,10,11))
   deck.shuffle()
-  def deal:Hand = {
-    Hand(deck.deal(), deck.deal())
-  }
 
-  val player = deal
+  val player = Hand(deck.deal(), deck.deal())
   val dealer = new Dealer(deck.deal(), deck.deal())
 
   println("Dealer")
@@ -36,7 +31,7 @@ object Game extends App {
   dealer.play(deck)
 
   println(s"Dealer has ${dealer.total()}")
-  if (dealer.won(player)) {
+  if (dealer.wins(player)) {
     println("You lose")
   } else {
     println("You win")

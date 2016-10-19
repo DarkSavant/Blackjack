@@ -15,7 +15,7 @@ class BlackjackTest extends FlatSpec with Matchers {
   "A higher total  hand" should "win" in {
     val winner = Hand(5, 5)
     val loser = Hand(4, 4)
-    winner.won(loser) should be (true)
+    winner.wins(loser) should be (true)
   }
 
   "Player hitting twice" should "add both cards to hand" in {
