@@ -6,15 +6,16 @@ case class Hand(firstCard: Int, secondCard: Int) {
   def replace11(card: Int):Int = {
     if (card == 11)
       return 1
-    return card
+    card
   }
 
   def total() = {
     var total = cards.sum
     if (total > 21 && cards.contains(11)) {
-      total = cards.map(replace11(_)).sum
+      total = cards.map(replace11).sum
     }
     total
   }
+
   def won(loser: Hand) = total() < 22 && total > loser.total()
 }

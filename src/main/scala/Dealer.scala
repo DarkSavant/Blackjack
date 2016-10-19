@@ -8,4 +8,6 @@ class Dealer(override val firstCard: Int, override val secondCard: Int) extends 
     if (total() <= 16)
       cards = newCard :: cards
   }
+
+  override def toString:String = s"Hand(*,$secondCard)"
 }
