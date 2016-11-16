@@ -1,3 +1,5 @@
+
+
 object Game extends App {
   println("Welcome")
   val deck = new Deck
@@ -20,23 +22,29 @@ object Game extends App {
       player.hit(newCard)
       println(s"Total: ${player.total()}")
       if (player.total() > 21) {
-        println("You BUST!!!")
-        System.exit(0)
+        choice = "S"
+      } else {
+        println("Hit(H) or Stay(S)")
+        choice = scala.io.StdIn.readLine()
       }
-
-      println("Hit(H) or Stay(S)")
-      choice = scala.io.StdIn.readLine()
     }
 
-    dealer.play(deck)
-
-    println(s"Dealer has ${dealer.total()}")
-    if (dealer.wins(player)) {
-      println("You lose")
+    if (player.total() > 21) {
+      println("You BUST!!")
     } else {
-      println("You win")
+      dealer.play(deck)
+
+      println(s"Dealer has ${dealer.total()}")
+      if (dealer.wins(player)) {
+        println("You lose")
+      } else {
+        println("You win")
+      }
     }
+
     println("Again?")
     again = scala.io.StdIn.readLine()
-  } while (again != "N")
+  }
+
+  while (again != "N")
 }
