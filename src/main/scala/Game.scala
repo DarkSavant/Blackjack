@@ -14,20 +14,8 @@ object Game extends App {
     println(dealer)
     println("Your Hand")
     println(player)
-    println("Hit(H) or Stay(S)")
-    var choice = scala.io.StdIn.readLine()
-    while (choice == "H") {
-      val newCard = deck.deal()
-      println(s"You are dealt $newCard")
-      player.hit(newCard)
-      println(s"Total: ${player.total()}")
-      if (player.total() > 21) {
-        choice = "S"
-      } else {
-        println("Hit(H) or Stay(S)")
-        choice = scala.io.StdIn.readLine()
-      }
-    }
+
+    player.play(deck)
 
     if (player.total() > 21) {
       println("You BUST!!")
