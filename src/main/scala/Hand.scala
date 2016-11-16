@@ -26,16 +26,19 @@ case class Hand(firstCard: Int, secondCard: Int) {
 
   def total(): Int = {
     var total = cards.sum
-    if (total > 21 && cards.contains(11)) {
-      total = cards.map(replace11).sum
+    if (total > 21) {
+      total = 0
+      var foundAce = false
+      cards.foreach({
+        card =>
+          if (card == 11 && !foundAce) {
+            total += 1
+            foundAce = true
+          } else {
+            total += card
+          }
+      })
     }
     total
   }
-
-  def replace11(card: Int): Int = {
-    if (card == 11)
-      return 1
-    card
-  }
-
 }
