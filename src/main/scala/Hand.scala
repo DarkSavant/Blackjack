@@ -1,5 +1,5 @@
 case class Hand(firstCard: Int, secondCard: Int) {
-  def play(deck: Deck): Unit = {
+  def playHand(deck: Deck): Unit = {
     println("Hit(H) or Stay(S)")
     var choice = scala.io.StdIn.readLine()
     while (choice == "H") {

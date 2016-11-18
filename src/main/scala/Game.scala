@@ -1,12 +1,9 @@
-
-
 object Game extends App {
   println("Welcome")
   val deck = new Deck
   deck.shuffle()
   var again = "Y"
   do {
-
     val player = Hand(deck.deal(), deck.deal())
     val dealer = new Dealer(deck.deal(), deck.deal())
 
@@ -15,12 +12,12 @@ object Game extends App {
     println("Your Hand")
     println(player)
 
-    player.play(deck)
+    player.playHand(deck)
 
     if (player.total() > 21) {
       println("You BUST!!")
     } else {
-      dealer.play(deck)
+      dealer.playHand(deck)
 
       println(s"Dealer has ${dealer.total()}")
       if (dealer.wins(player)) {
