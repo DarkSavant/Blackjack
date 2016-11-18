@@ -25,20 +25,11 @@ case class Hand(firstCard: Int, secondCard: Int) {
   def wins(other: Hand) = total() < 22 && total > other.total()
 
   def total(): Int = {
-    var total = cards.sum
-    if (total > 21) {
-      total = 0
-      var foundAce = false
-      cards.foreach({
-        card =>
-          if (card == 11 && !foundAce) {
-            total += 1
-            foundAce = true
-          } else {
-            total += card
-          }
-      })
+    var t = cards.sum
+    if (t > 21 && cards.contains(11)) {
+      cards = cards.updated(cards.indexOf(11), 1)
+      t = total()
     }
-    total
+    t
   }
 }

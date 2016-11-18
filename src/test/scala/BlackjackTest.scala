@@ -33,6 +33,7 @@ class BlackjackTest extends FlatSpec with Matchers {
 
   "Multiple aces" should "add to highest sum < 21" in {
     val hand = Hand(11,11)
-    hand total() should be (12)
+    hand.hit(11)
+    hand total() should be (13)
   }
 }
