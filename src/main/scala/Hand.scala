@@ -25,11 +25,18 @@ case class Hand(firstCard: Int, secondCard: Int) {
   def wins(other: Hand) = total() < 22 && total > other.total()
 
   def total(): Int = {
+    total(cards)
+  }
+
+  def total(cards: List[Int]): Int = {
     var t = cards.sum
     if (t > 21 && cards.contains(11)) {
-      cards = cards.updated(cards.indexOf(11), 1)
-      t = total()
+      t = total(replaceFirst(cards, 11, 1))
     }
     t
+  }
+
+  def replaceFirst(cards: List[Int], card: Int, newCard: Int): List[Int] = {
+    cards.updated(cards.indexOf(card), newCard)
   }
 }
